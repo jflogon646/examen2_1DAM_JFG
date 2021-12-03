@@ -1,4 +1,6 @@
+import java.lang.Math.pow
 import kotlin.math.sqrt
+import kotlin.math.pow
 
 /**
  * Clase Punto
@@ -8,22 +10,30 @@ import kotlin.math.sqrt
  */
 class Punto(var id: String) {
 
-    //Declaración de variables
+    /**
+     Declaracion de variables
+     */
     private var x: Int = 0
     private var y : Int = 0
 
-    //Constructor Secundario
+    /**
+    Constructor Secundario
+    */
     constructor(id: String,x: Int, y: Int) : this(id) {
         this.x = x
         this.y = y
     }
 
-    //Función para obtener las coordenadas, devuelve un Pair de dos Int
+    /**
+    Función para obtener las coordenadas, devuelve un Pair de dos Int
+    */
     fun obtenerCoordenadas(): Pair<Int,Int> {
         return Pair(x,y)
     }
 
-    //Override de la función toString
+    /**
+    Override de la función toString
+     */
     override fun toString(): String {
         return "Punto $id -> [$x, $y]"
     }
@@ -44,9 +54,10 @@ class Punto(var id: String) {
         Función distancia: devuelve la distancia entre los dos puntos
         */
         fun distancia(punto1: Punto,punto2: Punto): Double {
-            val result: Int = potencia(punto2.x - punto1.x) + potencia(punto2.y - punto1.y)
-            return sqrt(result.toDouble())
+            return sqrt((punto2.x - punto1.x).toDouble().pow(2) + (punto2.y - punto1.y).toDouble().pow(2))
+
         }
+
         /**
         Función localizaciónGeográficaNS: devuelve un map de String,List<Punto>
                                             que los clasifica en Norte o Sur
@@ -61,10 +72,14 @@ class Punto(var id: String) {
                     listaS.add(punto)
                 }
             }
+            listaN.removeFirst()
+            listaS.removeFirst()
             return mapOf("Norte" to listaN,"Sur" to listaS)
         }
 
-        //Función privada para las potencias, creada porque no existe el operador Potencia
+        /**
+        Función privada para las potencias, creada porque no existe el operador Potencia
+        */
         private fun potencia(x: Int): Int {
             return x * x
         }
@@ -73,7 +88,9 @@ class Punto(var id: String) {
 
 }
 
-//Función que hace uso del método de clase localizaciónGeográficaNS
+/**
+ * Función para el uso del método estático localizacionGeograficaNS
+ */
 fun listadoPuntosNorteSur(listado: Array<Punto>): String {
     var lista: String = ""
         listado.forEach { it -> lista += "${it.toString()}, " }
@@ -86,16 +103,27 @@ fun listadoPuntosNorteSur(listado: Array<Punto>): String {
 
 fun main() {
 
-    //Declaración de pA y pB
+    /**
+     Declaración de pA y pB
+     */
     val pA: Punto = Punto("pA",3,2)
     val pB: Punto = Punto("pB",1,3)
 
-    println(Punto.componenteDeVector(pA,pB)) //Prueba de componenteDeVector
 
+    /**
+     * Prueba de Punto.componenteDeVector()
+     */
+    println(Punto.componenteDeVector(pA,pB))
+
+    /**
+     * Prueba de Punto.distancia()
+     */
     println(Punto.distancia(pA,pB)) //2.236
 
 
-
+    /**
+     * Declaración de variables para pruebas
+     */
     val p1 = Punto("p1",-1,0)
     val p2 = Punto("p2",3,-1)
     val p3 = Punto("p3",-4,4)
@@ -106,6 +134,9 @@ fun main() {
     val p8 = Punto("p8",1,5)
     val p9 = Punto("p9",6,-7)
 
+    /**
+     * Prueba de Punto.localizacionGeograficaNS
+     * También se prueba la función creada para el uso de este método estático
+     */
     println(listadoPuntosNorteSur(arrayOf(p1,p2,p3,p4,p5,p6,p7,p8,p9)))
-
 }
