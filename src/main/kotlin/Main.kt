@@ -102,13 +102,23 @@ fun listadoPuntosNorteSur(listado: Array<Punto>): String {
 
 
 fun main() {
-
     /**
      Declaración de pA y pB
      */
     val pA: Punto = Punto("pA",3,2)
     val pB: Punto = Punto("pB",1,3)
 
+    /**
+     * Prueba de obtenerCoordenadas()
+     */
+    println(pA.obtenerCoordenadas())
+    println(pB.obtenerCoordenadas())
+
+    /**
+     * Prueba de override toString()
+     */
+    println("$pA")
+    println("$pB")
 
     /**
      * Prueba de Punto.componenteDeVector()
