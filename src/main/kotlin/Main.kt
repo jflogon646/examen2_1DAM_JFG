@@ -76,13 +76,6 @@ class Punto(var id: String) {
             listaS.removeFirst()
             return mapOf("Norte" to listaN,"Sur" to listaS)
         }
-
-        /**
-        Función privada para las potencias, creada porque no existe el operador Potencia
-        */
-        private fun potencia(x: Int): Int {
-            return x * x
-        }
     }
 
 
@@ -92,7 +85,7 @@ class Punto(var id: String) {
  * Función para el uso del método estático localizacionGeograficaNS
  */
 fun listadoPuntosNorteSur(listado: Array<Punto>): String {
-    var lista: String = ""
+    var lista = ""
         listado.forEach { it -> lista += "${it.toString()}, " }
     return "Lista de puntos: $lista \n" +
             "Localizacion Geografica NS: ${Punto.localizacionGeograficaNS(listado)}"
@@ -105,8 +98,8 @@ fun main() {
     /**
      Declaración de pA y pB
      */
-    val pA: Punto = Punto("pA",3,2)
-    val pB: Punto = Punto("pB",1,3)
+    val pA = Punto("pA",3,2)
+    val pB = Punto("pB",1,3)
 
     /**
      * Prueba de obtenerCoordenadas()
